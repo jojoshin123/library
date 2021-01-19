@@ -6,10 +6,41 @@
     <meta charset="utf-8">
     <link href="styles.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <div class="buttons">
+        <div class="pop-up pop-up-show">
+            <form>
+                <span>
+                    <label for="title">Book Title</label>
+                    <input id="title" type="text">
+                </span>
+                <span>
+                    <label for="author">Book Author</label>
+                    <input id="author" type="text">
+                </span>
+                <span>
+                    <label for="pages"># of Pages</label>
+                    <input id="pages" type="text">
+                </span>
+                <span>
+                    <label for="read">Already Read this book?</label>
+                    <input id="read" type="checkbox">
+                </span>
+                <span>
+                    <button style="margin-top: 20px;">Submit</button>
+                </span>
+            </form>
+        </div>
+
+    </div>
+    <div class="display">
+        <div class="book">Book</div>
+        <div class="book">Book</div>
+
+    </div>
 
     <script src="App.js"></script>
 </body>
