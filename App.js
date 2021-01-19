@@ -51,5 +51,19 @@ function submitForm() {
     const title = document.querySelector("#title").value;
     const author = document.querySelector("#author").value;
     const pages = document.querySelector("#pages").value;
-    const read = document.querySelector("#read").value;
+    const read = document.querySelector("#read").checked;
+    console.log(title);
+    console.log(author);
+    console.log(pages);
+    console.log(read);
+}
+
+function showPopUp() {
+    const popup = document.querySelector(".pop-up")
+    popup.classList.remove("pop-up-hide");
+}
+
+function hidePopUp() {
+    const popup = document.querySelector(".pop-up")
+    popup.classList.add("pop-up-hide");
 }

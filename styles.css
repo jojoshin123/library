@@ -1,11 +1,36 @@
 body {
     background-color: rgb(213, 235, 255);
     font-family: 'Open Sans', sans-serif;
+    margin: 0px;
 }
 
 .display {
     display: flex;
     flex-direction: row;
+    margin: 30px;
+}
+
+
+/* Header */
+
+.header {
+    background-color: rgb(132, 172, 172);
+    text-align: center;
+    padding: 25px 25px 50px 25px;
+    border-bottom: 3px solid black;
+    ;
+}
+
+button {
+    padding: 10px;
+    background-color: rgb(213, 235, 255);
+    border-radius: 10px;
+}
+
+button:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
 .pop-up {
@@ -20,7 +45,10 @@ body {
     padding: 20px;
 }
 
-.pop-up-show {
+
+/* Hides the pop-up */
+
+.pop-up-hide {
     display: none;
 }
 
@@ -46,8 +74,8 @@ input {
     width: 10%;
     text-align: center;
     background-color: rgb(224, 210, 131);
-    border: 2px solid black;
+    border: 1px solid rgb(0, 0, 0);
     padding: 10px 75px 50px 75px;
     margin: 20px;
-    box-shadow: 10px 20px 10px 10px rgb(133, 133, 133);
+    box-shadow: 5px 20px 10px 10px rgb(133, 133, 133);
 }
