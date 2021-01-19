@@ -11,15 +11,15 @@
 
 <body>
     <div class="buttons">
-        <div class="pop-up pop-up-show">
-            <form>
+        <div class="pop-up">
+            <form id="form">
                 <span>
                     <label for="title">Book Title</label>
                     <input id="title" type="text">
                 </span>
                 <span>
                     <label for="author">Book Author</label>
-                    <input id="author" type="text">
+                    <input id="author" type="text ">
                 </span>
                 <span>
                     <label for="pages"># of Pages</label>
@@ -30,19 +30,19 @@
                     <input id="read" type="checkbox">
                 </span>
                 <span>
-                    <button style="margin-top: 20px;">Submit</button>
+                    <input type="button" value="Submit" id="submit" onclick="submitForm()" style="margin-top: 20px; ">
                 </span>
             </form>
         </div>
 
     </div>
-    <div class="display">
-        <div class="book">Book</div>
-        <div class="book">Book</div>
+    <div class="display ">
+        <div class="book ">Book</div>
+        <div class="book ">Book</div>
 
     </div>
 
-    <script src="App.js"></script>
+    <script src="App.js "></script>
 </body>
 
 </html>

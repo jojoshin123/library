@@ -1,12 +1,20 @@
-let myLibrary = ["poop"];
+let myLibrary = [];
 
-function Book(title, author, pages, read) {
-
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
 }
 
-function addBookToLibrary() {
-    myLibrary.push();
+function addBookToLibrary(book) {
+    myLibrary.push(book);
 }
+
+const hobbit = new Book("The Hobbit", "JRR Tolkien", 299, "on");
+addBookToLibrary(hobbit);
 
 function displayLibrary() {
     const display = document.querySelector(".display");
@@ -18,3 +26,10 @@ function displayLibrary() {
     });
 }
 displayLibrary();
+
+function submitForm() {
+    const title = document.querySelector("#title").value;
+    const author = document.querySelector("#author").value;
+    const pages = document.querySelector("#pages").value;
+    const read = document.querySelector("#read").value;
+}
