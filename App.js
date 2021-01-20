@@ -86,10 +86,13 @@ function displayLibrary() {
         });
 
         remove.addEventListener('click', () => {
-            const index = myLibrary.indexOf(book); //index of book in myLibrary
-            myLibrary.splice(index, 1); //delete entry
-            localStorage.setItem('myLibrary', JSON.stringify(myLibrary)); //replace local storage
-            displayLibrary();
+            const confirm = window.confirm("Are you sure you want to remove this from your library?");
+            if (confirm) {
+                const index = myLibrary.indexOf(book); //index of book in myLibrary
+                myLibrary.splice(index, 1); //delete entry
+                localStorage.setItem('myLibrary', JSON.stringify(myLibrary)); //replace local storage
+                displayLibrary();
+            }
         });
 
         container.appendChild(edit);
