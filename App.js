@@ -96,6 +96,7 @@ function submitForm() {
         alert("\"Title\" input should be a valid string.");
     }
     hidePopUp();
+    document.querySelector("form").reset(); //reset the form
 }
 
 function showPopUp() {
