@@ -1,5 +1,14 @@
 let myLibrary = [];
 
+function loadLibrary() {
+    if (!localStorage.getItem("myLibrary")) {
+        localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+    } else {
+        myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
+    }
+}
+loadLibrary();
+
 class Book {
     constructor(title, author, pages, read) {
         this.title = title;
@@ -13,11 +22,12 @@ function addBookToLibrary(book) {
     myLibrary.push(book);
 }
 
-const hobbit = new Book("The Hobbit", "JRR Tolkien", 299, "on");
-addBookToLibrary(hobbit);
+// const hobbit = new Book("The Hobbit", "JRR Tolkien", 299, true);
+// addBookToLibrary(hobbit);
 
 function displayLibrary() {
     const display = document.querySelector(".display");
+    display.textContent = "";
     myLibrary.forEach(book => {
         const title = document.createElement('h1');
         title.textContent = book.title;
@@ -47,15 +57,29 @@ function displayLibrary() {
 }
 displayLibrary();
 
+function clearLibrary() {
+    const confirm = window.confirm("Are you sure you want to clear the whole library?");
+    if (confirm) {
+        localStorage.removeItem("myLibrary");
+        myLibrary = [];
+        localStorage.setItem("myLibrary", myLibrary);
+        displayLibrary();
+    } else {
+        return;
+    }
+}
+
 function submitForm() {
     const title = document.querySelector("#title").value;
     const author = document.querySelector("#author").value;
     const pages = document.querySelector("#pages").value;
     const read = document.querySelector("#read").checked;
-    console.log(title);
-    console.log(author);
-    console.log(pages);
-    console.log(read);
+    const book = new Book(title, author, pages, read);
+    addBookToLibrary(book);
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+    hidePopUp();
+    displayLibrary();
+    return book;
 }
 
 function showPopUp() {

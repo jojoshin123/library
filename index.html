@@ -12,7 +12,10 @@
 <body>
     <div class="header">
         <h1 style="font-size: xxx-large;">My Library</h1>
-        <button id="add-new-book" onclick="showPopUp()">Add New Book</button>
+        <div>
+            <button id="add-new-book" onclick="showPopUp()">Add New Book</button>
+            <button id="clear-library" onclick="clearLibrary()">Clear Library</button>
+        </div>
         <div class="pop-up pop-up-hide">
             <form id="form">
                 <span>
@@ -32,8 +35,8 @@
                     <input id="read" type="checkbox">
                 </span>
                 <span style="display: flex; flex-direction:row; justify-content:space-evenly;">
-                    <button id="submit" onclick="submitForm()" style="margin: 20px; ">Submit</button>
-                    <button id="close-pop-up-button" onclick="hidePopUp()" style="margin: 20px;">Close</button>
+                    <button id="submit" type="button" onclick="submitForm();" style="margin: 20px;">Submit</button>
+                    <button id="close-pop-up-button" type="button" onclick="hidePopUp();" style="margin: 20px;">Close</button>
                 </span>
             </form>
         </div>
