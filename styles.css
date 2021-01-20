@@ -28,6 +28,7 @@ button:hover {
 }
 
 .pop-up {
+    z-index: 1;
     position: fixed;
     width: auto;
     top: 50vh;
@@ -93,4 +94,9 @@ input[type='checkbox'] {
     display: flex;
     flex-direction: row;
     margin: 30px;
+}
+
+.is-blurred {
+    filter: blur(20px);
+    -webkit-filter: blur(20px);
 }

@@ -16,27 +16,28 @@
             <button id="add-new-book" onclick="showPopUp()">Add New Book</button>
             <button id="clear-library" onclick="clearLibrary()">Clear Library</button>
         </div>
-        <div class="pop-up pop-up-hide">
-            <form id="form">
-                <span>
+    </div>
+
+    <div class="pop-up pop-up-hide">
+        <form id="form">
+            <span>
                     <input id="title" placeholder="Book Title" type="text">
                 </span>
-                <span>
+            <span>
                     <input id="author" placeholder="Book Author" type="text ">
                 </span>
-                <span>
+            <span>
                     <input id="pages" placeholder="# of Pages" type="number" max="999999">
                 </span>
-                <span>
+            <span>
                     <label for="read">Already read this book?</label>
                     <input id="read" type="checkbox">
                 </span>
-                <span style="display: flex; flex-direction:row; justify-content:space-evenly;">
+            <span style="display: flex; flex-direction:row; justify-content:space-evenly;">
                     <button id="submit" type="button" onclick="submitForm(0);" style="margin: 20px;">Submit</button>
                     <button id="close-pop-up-button" type="button" onclick="hidePopUp();" style="margin: 20px;">Close</button>
                 </span>
-            </form>
-        </div>
+        </form>
     </div>
 
     <div class="display">

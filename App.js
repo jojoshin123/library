@@ -63,6 +63,8 @@ function displayLibrary() {
 
         edit.textContent = "Edit";
         remove.textContent = "Remove from library";
+        edit.id = "edit";
+        remove.id = "remove";
 
         edit.addEventListener('click', () => {
             const index = myLibrary.indexOf(book); //index of book in myLibrary
@@ -73,16 +75,16 @@ function displayLibrary() {
             document.querySelector("#pages").value = book.pages;
             document.querySelector("#read").checked = book.read;
 
-            console.log(myLibrary);
-
-            document.addEventListener('submit', () => {
+            document.addEventListener('submit', function replace() {
                 const temp = myLibrary.shift(); //the new edited entry
                 console.log(temp);
                 myLibrary.splice(index, 1, temp); //replace old entry
                 localStorage.setItem('myLibrary', JSON.stringify(myLibrary)); //replace local storage
                 displayLibrary();
-            })
+                document.removeEventListener('submit', replace); //remove event listener
+            });
 
+            console.log(myLibrary);
         });
 
         remove.addEventListener('click', () => {
@@ -103,6 +105,18 @@ function displayLibrary() {
     });
 }
 displayLibrary();
+
+//This replace function is defined externally so the event listener can be removed in edit
+//It takes in an index in myLibrary (sent over in the edit event listener)
+function replace(index) {
+    console.log("POOP");
+    console.log(index);
+    const temp = myLibrary.shift(); //the new edited entry
+    console.log(temp);
+    myLibrary.splice(index, 1, temp); //replace old entry
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary)); //replace local storage
+    displayLibrary();
+}
 
 function clearLibrary() {
     const confirm = window.confirm("Are you sure you want to clear the whole library?");
@@ -150,10 +164,19 @@ function submitForm(index) {
 function showPopUp() {
     const popup = document.querySelector(".pop-up")
     popup.classList.remove("pop-up-hide");
+    const display = document.querySelector(".display");
+    const header = document.querySelector(".header");
+    display.style.cssText = "filter: blur(5px); -webkit-filter: blur(5px); transition: all 0.3s;"
+    header.style.cssText = "filter: blur(5px); -webkit-filter: blur(5px); transition: all 0.3s;"
+    displayLibrary();
 }
 
 function hidePopUp() {
     const popup = document.querySelector(".pop-up")
+    const display = document.querySelector(".display");
+    const header = document.querySelector(".header");
+    display.style.cssText = "";
+    header.style.cssText = "";
     popup.classList.add("pop-up-hide");
     document.querySelector("form").reset(); //reset the form
 }
