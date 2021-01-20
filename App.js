@@ -18,8 +18,9 @@ class Book {
     }
 }
 
-function addBookToLibrary(book) {
-    myLibrary.push(book);
+// This takes a Book object and an index of where to put it in myLibrary
+function addBookToLibrary(book, index) {
+    myLibrary.splice(index, 0, book);
 }
 
 // const hobbit = new Book("The Hobbit", "JRR Tolkien", 299, true);
@@ -52,6 +53,49 @@ function displayLibrary() {
         div.appendChild(pages);
         div.appendChild(read);
 
+        // Edit and remove options
+        const container = document.createElement('div');
+        const edit = document.createElement('button');
+        const remove = document.createElement('button');
+
+        edit.style.cssText = "margin: 20px 10px 0px 10px;"
+        remove.style.cssText = "margin: 20px 10px 0px 10px;"
+
+        edit.textContent = "Edit";
+        remove.textContent = "Remove from library";
+
+        edit.addEventListener('click', () => {
+            const index = myLibrary.indexOf(book); //index of book in myLibrary
+            console.log(index);
+            showPopUp();
+            document.querySelector("#title").value = book.title;
+            document.querySelector("#author").value = book.author;
+            document.querySelector("#pages").value = book.pages;
+            document.querySelector("#read").checked = book.read;
+
+            console.log(myLibrary);
+
+            document.addEventListener('submit', () => {
+                const temp = myLibrary.shift(); //the new edited entry
+                console.log(temp);
+                myLibrary.splice(index, 1, temp); //replace old entry
+                localStorage.setItem('myLibrary', JSON.stringify(myLibrary)); //replace local storage
+                displayLibrary();
+            })
+
+        });
+
+        remove.addEventListener('click', () => {
+            const index = myLibrary.indexOf(book); //index of book in myLibrary
+            myLibrary.splice(index, 1); //delete entry
+            localStorage.setItem('myLibrary', JSON.stringify(myLibrary)); //replace local storage
+            displayLibrary();
+        });
+
+        container.appendChild(edit);
+        container.appendChild(remove);
+        div.appendChild(container);
+
         display.appendChild(div);
     });
 }
@@ -69,21 +113,19 @@ function clearLibrary() {
     }
 }
 
-function submitForm() {
+// submitForm takes in an index to pass it onto addBookToLibrary()
+function submitForm(index) {
     const title = document.querySelector("#title").value;
     const author = document.querySelector("#author").value;
     const pages = document.querySelector("#pages").value;
     const read = document.querySelector("#read").checked;
-
-    console.log(pages);
-    console.log(typeof pages == "number");
 
     // Verify inputs
     if (typeof title == "string" && title) {
         if (typeof author == "string" && author) {
             if (!isNaN(pages) && Number.isInteger(parseFloat(pages))) {
                 const book = new Book(title, author, pages, read);
-                addBookToLibrary(book);
+                addBookToLibrary(book, index);
                 localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
                 displayLibrary();
             } else {
@@ -95,8 +137,11 @@ function submitForm() {
     } else {
         alert("\"Title\" input should be a valid string.");
     }
+
     hidePopUp();
-    document.querySelector("form").reset(); //reset the form
+    let submitEvent = new Event("submit"); // for edit function
+    document.dispatchEvent(submitEvent);
+    displayLibrary();
 }
 
 function showPopUp() {
@@ -107,4 +152,5 @@ function showPopUp() {
 function hidePopUp() {
     const popup = document.querySelector(".pop-up")
     popup.classList.add("pop-up-hide");
+    document.querySelector("form").reset(); //reset the form
 }
