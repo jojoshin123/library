@@ -75,15 +75,17 @@ function submitForm() {
     const pages = document.querySelector("#pages").value;
     const read = document.querySelector("#read").checked;
 
+    console.log(pages);
+    console.log(typeof pages == "number");
+
     // Verify inputs
     if (typeof title == "string" && title) {
         if (typeof author == "string" && author) {
-            if (Number.isInteger(pages) && pages) {
+            if (!isNaN(pages) && Number.isInteger(parseFloat(pages))) {
                 const book = new Book(title, author, pages, read);
                 addBookToLibrary(book);
                 localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
                 displayLibrary();
-                return book;
             } else {
                 alert("\"Pages\" input should be an integer.");
             }
