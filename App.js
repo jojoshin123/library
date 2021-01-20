@@ -74,12 +74,26 @@ function submitForm() {
     const author = document.querySelector("#author").value;
     const pages = document.querySelector("#pages").value;
     const read = document.querySelector("#read").checked;
-    const book = new Book(title, author, pages, read);
-    addBookToLibrary(book);
-    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+
+    // Verify inputs
+    if (typeof title == "string" && title) {
+        if (typeof author == "string" && author) {
+            if (Number.isInteger(pages) && pages) {
+                const book = new Book(title, author, pages, read);
+                addBookToLibrary(book);
+                localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+                displayLibrary();
+                return book;
+            } else {
+                alert("\"Pages\" input should be an integer.");
+            }
+        } else {
+            alert("\"Author\" input should be a valid string.");
+        }
+    } else {
+        alert("\"Title\" input should be a valid string.");
+    }
     hidePopUp();
-    displayLibrary();
-    return book;
 }
 
 function showPopUp() {

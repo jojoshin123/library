@@ -4,12 +4,6 @@ body {
     margin: 0px;
 }
 
-.display {
-    display: flex;
-    flex-direction: row;
-    margin: 30px;
-}
-
 
 /* Header */
 
@@ -41,15 +35,20 @@ button:hover {
     /* center the div */
     transform: translate(-50%, -50%);
     border: 2px solid black;
-    background-color: rgb(115, 151, 182);
+    background-color: rgb(141, 177, 207);
     padding: 20px;
+    opacity: 1;
+    transition: all 0.3s;
 }
 
 
 /* Hides the pop-up */
 
 .pop-up-hide {
-    display: none;
+    padding: 0;
+    overflow: hidden;
+    height: 0;
+    opacity: 0;
 }
 
 form {
@@ -68,14 +67,30 @@ span {
 input {
     margin: 5px 10px 10px 10px;
     width: auto;
+    font-size: large;
+    padding: 10px;
 }
 
+input[type='checkbox'] {
+    transform: scale(1.9);
+    margin-left: 15px;
+}
+
+
+/* Book */
+
 .book {
-    width: 10%;
+    width: 20%;
     text-align: center;
     background-color: rgb(224, 210, 131);
     border: 1px solid rgb(0, 0, 0);
-    padding: 10px 75px 50px 75px;
+    padding: 10px 15px 150px 15px;
     margin: 20px;
-    box-shadow: 5px 20px 10px 10px rgb(133, 133, 133);
+    box-shadow: 20px 20px 20px 5px rgb(175, 175, 175);
+}
+
+.display {
+    display: flex;
+    flex-direction: row;
+    margin: 30px;
 }
